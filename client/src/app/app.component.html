@@ -1,4 +1,6 @@
-<!-- <h1>Hi world. Its page - {{ title }}</h1>
+<app-nav></app-nav>
+
+<h1>Hi world. Its page - {{ title }}</h1>
 <ul>
   <li *ngFor="let user of users; let i = index">
     {{user.id}}. {{user.name}} <button (click)="deleteUser(user.id)" class="btn btn-danger">delete</button>
@@ -18,7 +20,7 @@
   <div>
     <h3>Not found</h3>
   </div>
-</ng-template> -->
+</ng-template>
 <!-- 
   #5680E9
 #84CEEB
@@ -26,89 +28,3 @@
 #C1C8E4
 #8860D0
  -->
-<mat-grid-list cols="5" rowHeight="100%">
-  <mat-grid-tile *ngIf="isShowLeftColumn" [colspan]="1" [style.background]="'#8860D0'"
-    [@openClose]="isOpen ? 'open' : 'closed'">
-    <div id="asdzxc">
-      {{sliderValue}}
-      <mat-slider thumbLabel [displayWith]="formatLabel" vertical [(ngModel)]="sliderValue"></mat-slider>
-    </div>
-  </mat-grid-tile>
-
-
-  <mat-grid-tile [colspan]="5 - (+ isShowRightColumn) - (+ isShowLeftColumn)" [style.background]="'#c1c8e4'//">
-
-    <div>
-      <button (click)="toggleLeft()"
-        style="position: fixed;left: {{isShowLeftColumn ? 20 : 0}}%; margin-left: 5px; background-color: #8860D0;"
-        mat-fab aria-label="Open left panel">
-        <mat-icon>{{isShowLeftColumn?'keyboard_arrow_left':'keyboard_arrow_right'}}</mat-icon>
-      </button>
-    </div>
-
-    <div style="height:100%; width: 70.7%;  background-color: rgba(0,0,0,0.5);  
-    background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.5 )), url('assets/1472681.jpg');
-    box-shadow: 0 0 20px rgb(63, 61, 61);
-  -webkit-background-size: cover;
-  -moz-background-size:  cover;
-  -o-background-size: cover;
-  background-size: cover;
-    background-repeat:no-repeat">
-      <div style="
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 0px 40px;">
-        <div style="margin-top: 15px;">
-          <hr style="margin-bottom: 10px;">
-          <h1 style="font-size: 40px; text-shadow: 0px 1px 2px black; color: white;">
-            <span style="color:red; text-shadow: none;"><b>7f </b></span> The final journey
-          </h1>
-        </div>
-
-
-        <div class="footer">
-          <div style="display: flex; flex-direction: row-reverse;">
-            <div style="    display: flex;
-            width: 43%;
-            color: black;
-            text-shadow: 0px 0px 0px black;
-            font-weight: 500;
-        ">
-              <div style="background-color: yellow; height: 100%; width: 20px; margin-right: 10px;"></div>
-              <p style="margin: 0;">In Alaska, the sokeye salmon swims up the river. It's a dangerous journey.</p>
-            </div>
-          </div>
-          <hr color="black">
-          <div class="numberCircle">90</div>
-
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <button (click)="toggleRight()"
-        style="position: fixed;right: {{isShowRightColumn ? 20 : 0}}%; margin-right: 5px; background-color: #5680E9;"
-        mat-fab aria-label="Open right panel">
-        <mat-icon>{{isShowRightColumn?'keyboard_arrow_right':'keyboard_arrow_left'}}</mat-icon>
-      </button>
-    </div>
-  </mat-grid-tile>
-  <mat-grid-tile *ngIf="isShowRightColumn" [colspan]="1" [style.background]="'#5680E9'">
-    <div [style.width]="'80%'">
-      <div style="display: flex;justify-content: space-between; ">
-        <p>Пройдено</p>
-        <p>14%</p>
-      </div>
-      <div style="display: flex;justify-content: space-between; ">
-        <p>Пройдено</p>
-        <p>14%</p>
-      </div>
-      <div style="display: flex;justify-content: space-between; ">
-        <p>Пройдено</p>
-        <p>14%</p>
-      </div>
-    </div>
-  </mat-grid-tile>
-</mat-grid-list>
