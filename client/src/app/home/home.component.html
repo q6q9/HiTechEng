@@ -1,0 +1,24 @@
+<div class="container mt-5 mb-3">
+    <div *ngIf="!(accountServise.currentUser$ | async)">
+        <div *ngIf="!registerMode">
+            <h1>Welcome to HiTechEnglish !</h1>
+            <p class="text-justify">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis non laudantium
+                repellendus ipsum corrupti hic reprehenderit ducimus, quisquam atque iure necessitatibus adipisci fugit
+                optio. Officiis exercitationem at ratione doloremque quis!</p>
+            <div class="text-center">
+                <button class="btn btn-lg btn-primary me-2" (click)="registerToggle()">
+                    Register
+                </button>
+                <a class="btn btn-lg btn-info">
+                    Learn more
+                </a>
+            </div>
+        </div>
+        <div *ngIf="registerMode" class="w-100 d-flex justify-content-center">
+            <app-register (isCancelled)="registerToggle()"></app-register>
+        </div>
+    </div>
+    <div *ngIf="(accountServise.currentUser$ | async)">
+        Hi !
+    </div>
+</div>

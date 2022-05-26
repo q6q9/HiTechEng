@@ -3,32 +3,30 @@
         <a class="navbar-brand" href="#">HiTeckEng</a>
         <div class="container d-flex justify-content-between">
             <div>
-                <ul *ngIf="isLogged" class="navbar-nav mr-auto">
+                <ul *ngIf="accountService.currentUser$ | async" class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" (click)="logout()">Log out</a>
-                    </li>
                 </ul>
             </div>
 
-            <form *ngIf="!isLogged" class="d-flex" autocomplete="off" (submit)="login()">
+            <form *ngIf="!(accountService.currentUser$ | async)" class="d-flex" autocomplete="off" 
+                (submit)="accountService.login(this.loginForm).subscribe()"
+                >
                 <input class="form-control me-2" type="text" name="name" [(ngModel)]="loginForm.name"
                     placeholder="Login">
                 <input class="form-control me-2" type="password" name="password" [(ngModel)]="loginForm.password"
                     placeholder="Password">
-
                 <button class="btn btn-outline-success" type="submit">Login</button>
             </form>
-            <div *ngIf="isLogged" class="dropdown" dropdown style="padding-top: 6px;"> 
+            <div *ngIf="accountService.currentUser$ | async" class="dropdown" dropdown style="padding-top: 6px;">
                 <a class="dropdown-toggle text-light" dropdownToggle aria-controls="dropdown-animated">Welcome!</a>
-                <div class="dropdown-menu" *dropdownMenu >
+                <div class="dropdown-menu" *dropdownMenu>
                     <a href="" class="dropdown-item">Edit Profile</a>
-                    <a class="dropdown-item" (click)="logout()">Logout</a>
+                    <a class="dropdown-item" (click)="accountService.logout()">Logout</a>
                 </div>
 
             </div>

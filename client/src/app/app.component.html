@@ -1,26 +1,9 @@
-<app-nav></app-nav>
-
-<h1>Hi world. Its page - {{ title }}</h1>
-<ul>
-  <li *ngFor="let user of users; let i = index">
-    {{user.id}}. {{user.name}} <button (click)="deleteUser(user.id)" class="btn btn-danger">delete</button>
-  </li>
-</ul>
-<div>
-  <label>Find user</label>
-  <input [(ngModel)]="userId" (keyup)="getUser()" (change)="getUser()" type="number">
-  <button type="button" (click)="getUser()">Find!</button>
-</div>
-<div *ngIf="user not null; else elseBlock">
-  <h2>Selected user:</h2>
-  <p>Name - {{ user.name }}</p>
-  <p>Id - {{ user.id }}</p>
-</div>
-<ng-template #elseBlock>
-  <div>
-    <h3>Not found</h3>
-  </div>
-</ng-template>
+<header>
+  <app-nav></app-nav>
+</header>
+<main class="container">
+  <app-home></app-home>
+</main>
 <!-- 
   #5680E9
 #84CEEB

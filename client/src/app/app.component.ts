@@ -2,6 +2,7 @@ import { User } from './../entities/User';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { animate, query, state, style, transition, trigger } from '@angular/animations';
+import { AccountService } from './_services/account.service';
 
 @Component({
   selector: 'app-root',
@@ -53,46 +54,21 @@ import { animate, query, state, style, transition, trigger } from '@angular/anim
 })
 export class AppComponent implements OnInit {
   title = 'Main';
-  users: User[] = []
-  user: User | null = null;
-  userId: number = 0;
-  isShowLeftColumn: boolean = true;
-  isShowRightColumn: boolean = true;
-  isOpen: boolean = true;
-  sliderValue: number = 0;
 
-  constructor(private http: HttpClient) { }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
-    this.getUsers()
+    this.loadCurrentUser()
   }
 
-  formatLabel(value: number): string {
-    console.log(value)
-    return value + '';
-  }
+  loadCurrentUser(): void {
+    const unparsedUser = localStorage.getItem('user');
 
-  getUsers(): void {
-    this.http.get<User[]>('https://localhost:7155/api/users').subscribe(
-      response => this.users = response
-    )
-  }
+    if (!unparsedUser) return
 
-  getUser(): void {
-    this.http.get<User>('https://localhost:7155/api/users/' + this.userId).subscribe(
-      response => this.user = response
-    )
-  }
+    const user: User = JSON.parse(unparsedUser)
+    this.accountService.setCurrentUser(user)
 
-  deleteUser(id: number): void {
-    this.users = this.users.filter(user => user.id !== id)
-  }
-
-  toggleLeft(): void {
-    this.isShowLeftColumn = !this.isShowLeftColumn;
-  }
-
-  toggleRight(): void {
-    this.isShowRightColumn = !this.isShowRightColumn;
+    this.accountService.currentUser$.subscribe(user => console.log(user))
   }
 }

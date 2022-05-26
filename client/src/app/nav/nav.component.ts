@@ -8,19 +8,15 @@ import { AccountService } from '../_services/account.service';
   styleUrls: ['./nav.component.scss'],
   providers: [{ provide: BsDropdownConfig, useValue: { isAnimated: true, autoClose: true } }]
 })
-export class NavComponent {
+export class NavComponent implements OnInit {
   loginForm: any = {}
-  isLogged: boolean = false;
 
-  constructor(private accountService: AccountService) { }
+  constructor(readonly accountService: AccountService) { }
 
-  login() {
-    this.accountService.login(this.loginForm).subscribe(userDto => {
-      this.isLogged = true;
+  ngOnInit(): void {
+    this.accountService.currentUser$.subscribe(user => {
+      console.log(user);
+      
     })
-  }
-
-  logout() {
-    this.isLogged = false;
   }
 }
