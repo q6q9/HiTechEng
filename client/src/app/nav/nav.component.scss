@@ -1,0 +1,44 @@
+#title {
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.mobile-nav {
+  display: none;
+  @media (max-width: 767px) {
+    display: flex;
+    max-height: 0;
+    overflow-y: hidden;
+  }
+}
+
+.desktop-nav {
+  display: flex;
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+#mobile-title {
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
+
+#mobile-btn-menu {
+  all: unset;
+  display: none;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    display: inline-block;
+  }
+}
+
+nav {
+  .container.top {
+    min-height: 67px;
+  }
+}

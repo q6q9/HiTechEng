@@ -1,7 +1,8 @@
 import { User } from './../../entities/User';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, ReplaySubject } from 'rxjs';
+import { map, Observable, of, ReplaySubject } from 'rxjs';
+import { ThisReceiver } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,10 @@ export class AccountService {
 
   private currentUserSource = new ReplaySubject<User | null>(1)
   currentUser$ = this.currentUserSource.asObservable()
-
-  constructor(private http: HttpClient) { }
+  
+  constructor(private http: HttpClient) {
+    this.currentUserSource.next(null)
+  }
 
   register(registerForm: any): Observable<User | undefined> {
     return this.http.post<User | null>(this.baseUrl + 'account/register', registerForm).pipe(
@@ -23,7 +26,7 @@ export class AccountService {
 
         this.currentUserSource.next(user)
         localStorage.setItem('user', JSON.stringify(user))
-        
+
         return user;
       })
     )

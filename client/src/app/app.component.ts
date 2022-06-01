@@ -69,6 +69,6 @@ export class AppComponent implements OnInit {
     const user: User = JSON.parse(unparsedUser)
     this.accountService.setCurrentUser(user)
 
-    this.accountService.currentUser$.subscribe(user => console.log(user))
+    this.accountService.currentUser$.subscribe()
   }
 }

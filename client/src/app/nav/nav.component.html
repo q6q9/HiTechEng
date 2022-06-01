@@ -1,36 +1,149 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="min-height: 67px">
-    <div class="container">
-        <a class="navbar-brand" href="#">HiTeckEng</a>
-        <div class="container d-flex justify-content-between">
-            <div>
-                <ul *ngIf="accountService.currentUser$ | async" class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                </ul>
-            </div>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <div class="container top">
+    <div class="container d-flex justify-content-between">
+      <a id="title" class="navbar-brand" routerLink="/">HiTeckEng</a>
 
-            <form *ngIf="!(accountService.currentUser$ | async)" class="d-flex" autocomplete="off" 
-                (submit)="accountService.login(this.loginForm).subscribe()"
-                >
-                <input class="form-control me-2" type="text" name="name" [(ngModel)]="loginForm.name"
-                    placeholder="Login">
-                <input class="form-control me-2" type="password" name="password" [(ngModel)]="loginForm.password"
-                    placeholder="Password">
-                <button class="btn btn-outline-success" type="submit">Login</button>
-            </form>
-            <div *ngIf="accountService.currentUser$ | async" class="dropdown" dropdown style="padding-top: 6px;">
-                <a class="dropdown-toggle text-light" dropdownToggle aria-controls="dropdown-animated">Welcome!</a>
-                <div class="dropdown-menu" *dropdownMenu>
-                    <a href="" class="dropdown-item">Edit Profile</a>
-                    <a class="dropdown-item" (click)="accountService.logout()">Logout</a>
-                </div>
+      <button
+        *ngIf="accountService.currentUser$ | async"
+        (click)="toggleMobileMenu()"
+        id="mobile-btn-menu"
+        class="me-3"
+      >
+        <i class="fa-solid fa-bars fa-2xl"></i>
+      </button>
 
-            </div>
+      <div class="container desktop-nav">
+        <ul class="navbar-nav mr-auto mobile">
+          <ng-container>
+            <li class="nav-item">
+              <a
+                (click)="toggleMobileMenu()"
+                id="mobile-title"
+                class="navbar-brand"
+                routerLink="/"
+                >HiTeckEng</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                (click)="toggleMobileMenu()"
+                class="nav-link"
+                routerLinkActive="active"
+                routerLink="/members"
+                href="#"
+                >Members</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                (click)="toggleMobileMenu()"
+                class="nav-link"
+                routerLinkActive="active"
+                routerLink="/lists"
+                href="#"
+                >Lists</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                (click)="toggleMobileMenu()"
+                class="nav-link"
+                routerLinkActive="active"
+                routerLink="/messages"
+                href="#"
+                >Messages</a
+              >
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+      <form
+        *ngIf="!(accountService.currentUser$ | async)"
+        class="d-flex"
+        autocomplete="off"
+        (submit)="login()"
+      >
+        <input
+          autocomplete="off"
+          class="form-control me-2"
+          type="search"
+          name="name"
+          [(ngModel)]="loginForm.name"
+          placeholder="Login"
+        />
+        <input
+          class="form-control me-2"
+          type="password"
+          name="password"
+          [(ngModel)]="loginForm.password"
+          placeholder="Password"
+          autocomplete="new-password"
+        />
+        <button class="btn btn-success" type="submit">Login</button>
+      </form>
+
+      <div
+        *ngIf="accountService.currentUser$ | async as user"
+        class="dropdown d-flex align-items-center"
+        dropdown
+      >
+        <a
+          class="dropdown-toggle text-light text-decoration-none"
+          dropdownToggle
+          aria-controls="dropdown-animated"
+          >Welcome {{ user.name }}!</a
+        >
+        <div class="dropdown-menu" *dropdownMenu>
+          <a href="" class="dropdown-item">Edit Profile</a>
+          <a class="dropdown-item" (click)="accountService.logout()">Logout</a>
         </div>
-
+      </div>
     </div>
+  </div>
+
+  <div class="container mobile-nav" [@slide]="animateNav ? 'down' : 'up'">
+    <ul class="navbar-nav mr-auto mobile">
+      <ng-container>
+        <li class="nav-item">
+          <a
+            (click)="toggleMobileMenu()"
+            id="mobile-title"
+            class="navbar-brand"
+            routerLink="/"
+            >HiTeckEng</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            (click)="toggleMobileMenu()"
+            class="nav-link"
+            routerLinkActive="active"
+            routerLink="/members"
+            href="#"
+            >Members</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            (click)="toggleMobileMenu()"
+            class="nav-link"
+            routerLinkActive="active"
+            routerLink="/lists"
+            href="#"
+            >Lists</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            (click)="toggleMobileMenu()"
+            class="nav-link"
+            routerLinkActive="active"
+            routerLink="/messages"
+            href="#"
+            >Messages</a
+          >
+        </li>
+      </ng-container>
+    </ul>
+  </div>
 </nav>

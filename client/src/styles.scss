@@ -1,4 +1,4 @@
-@use '@angular/material' as mat;
+// @use '@angular/material' as mat;
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -14,11 +14,11 @@ html, body { height: 100%; }
 @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
 
 
-@font-face {
-   font-family: "Open Sans", sans-serif;
-   src: url('https://fonts.googleapis.com/css2?family=Open+Sans');
- }
-$custom-typography: mat.define-typography-config(
-  $font-family: "Open Sans, sans-serif"
-);
-@include mat.core($custom-typography);
+// @font-face {
+//    font-family: "Open Sans", sans-serif;
+//    src: url('https://fonts.googleapis.com/css2?family=Open+Sans');
+//  }
+// $custom-typography: mat.define-typography-config(
+//   $font-family: "Open Sans, sans-serif"
+// );
+// @include mat.core($custom-typography);

@@ -1,14 +1,34 @@
-<form #registerForm="ngForm" class="text-center p-4 rounded shadow" (ngSubmit)="register()" autocomplete="off">
-    <h2 class="mb-4">Welcome</h2>
-    <div class="form-group mb-4">
-        <input type="text" class="form-control" name="name" placeholder="Name" [(ngModel)]="model.name">
-    </div>
-    <div class="form-group mb-4">
-        <input type="text" class="form-control" name="name" placeholder="Passowrd" type="password"
-            [(ngModel)]="model.password">
-    </div>
-    <div class="form-group">
-        <button class="btn btn-success me-2">Register</button>
-        <button class="btn btn-danger" (click)="isCancelled.emit(true)">Cancel</button>
-    </div>
+<form
+  #registerForm="ngForm"
+  class="text-center p-4 rounded shadow bg-dark"
+  (ngSubmit)="register()"
+  autocomplete="off"
+>
+  <h2 class="mb-4">Welcome</h2>
+  <div class="form-group mb-4">
+    <input
+      type="text"
+      class="form-control"
+      name="name"
+      placeholder="Name"
+      [(ngModel)]="model.name"
+    />
+  </div>
+  <div class="form-group mb-4">
+    <input
+      autocomplete="new-password"
+      type="text"
+      class="form-control"
+      name="name"
+      placeholder="Passowrd"
+      type="password"
+      [(ngModel)]="model.password"
+    />
+  </div>
+  <div class="form-group">
+    <button class="btn btn-success me-2">Register</button>
+    <button class="btn btn-danger" (click)="isCancelled.emit(true)">
+      Cancel
+    </button>
+  </div>
 </form>
