@@ -40,5 +40,10 @@
 nav {
   .container.top {
     min-height: 67px;
+    @media (max-width: 768px) {
+      div {
+        // justify-content: center !important;
+      }
+    }
   }
 }

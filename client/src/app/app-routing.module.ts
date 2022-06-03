@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BuggyComponent } from './buggy/buggy.component';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { HomeComponent } from './home/home.component';
 import { ListsComponent } from './lists/lists.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
@@ -20,7 +23,10 @@ const routes: Routes = [
       { path: 'messages', component: MessagesComponent },
     ],
   },
-  { path: '**', component: HomeComponent, pathMatch: 'full' },
+  { path: '_buggy', component: BuggyComponent },
+  { path: '404', component: NotFoundComponent},
+  { path: '500', component: ServerErrorComponent},
+  { path: '**', redirectTo: '/404', pathMatch: 'full' },
 ];
 
 @NgModule({

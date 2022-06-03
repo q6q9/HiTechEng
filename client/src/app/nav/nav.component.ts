@@ -32,7 +32,7 @@ import { AnimationEvent } from '@angular/animations';
 })
 export class NavComponent implements OnInit {
   loginForm: any = {};
-  animateNav = false;
+  openMobileNav = false;
 
   constructor(
     readonly accountService: AccountService,
@@ -59,6 +59,11 @@ export class NavComponent implements OnInit {
   }
 
   toggleMobileMenu() {
-    this.animateNav = !this.animateNav;
+    this.openMobileNav = !this.openMobileNav;
+  }
+
+  logout() {
+    this.accountService.logout()
+    this.openMobileNav = false
   }
 }

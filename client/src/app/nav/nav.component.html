@@ -12,7 +12,7 @@
         <i class="fa-solid fa-bars fa-2xl"></i>
       </button>
 
-      <div class="container desktop-nav">
+      <div [hidden]="!(accountService.currentUser$ | async)" class="container desktop-nav">
         <ul class="navbar-nav mr-auto mobile">
           <ng-container>
             <li class="nav-item">
@@ -95,13 +95,13 @@
         >
         <div class="dropdown-menu" *dropdownMenu>
           <a href="" class="dropdown-item">Edit Profile</a>
-          <a class="dropdown-item" (click)="accountService.logout()">Logout</a>
+          <a class="dropdown-item" (click)="logout()">Logout</a>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="container mobile-nav" [@slide]="animateNav ? 'down' : 'up'">
+  <div class="container mobile-nav" [@slide]="openMobileNav ? 'down' : 'up'">
     <ul class="navbar-nav mr-auto mobile">
       <ng-container>
         <li class="nav-item">
